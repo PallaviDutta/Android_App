@@ -1,11 +1,13 @@
 package com.example.userpc.android_app;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -23,7 +25,18 @@ public class Actions extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_actions, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_actions, container, false);
+
+        Button pic_click = (Button)view.findViewById(R.id.pic_clic_btn);
+        pic_click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),CameraActivity.class));
+            }
+        });
+
+        return view;
     }
 
 }
