@@ -1,5 +1,6 @@
 package com.example.userpc.android_app;
 
+import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         myCam = getCameraInstance();
+        myCam.setDisplayOrientation(90);
 
         // Create our Preview view and set it as the content of our activity.
         surfaceView = new CameraSView(this, myCam);
@@ -41,6 +43,7 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         myCam.takePicture(null, null, mPicture);
+                        startActivity(new Intent(CameraActivity.this,Details.class));
                     }
                 }
         );
