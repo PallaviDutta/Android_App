@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CameraActivity" />
-        <activity android:name=".Details"></activity>
+        <activity android:name=".Graph"></activity>
     </application>
 
 </manifest>

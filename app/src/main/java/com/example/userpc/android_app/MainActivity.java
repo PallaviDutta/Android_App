@@ -23,4 +23,10 @@ public class MainActivity extends AppCompatActivity {
         tab.setupWithViewPager(pager);
 
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }

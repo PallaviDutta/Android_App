@@ -3,6 +3,7 @@ package com.example.userpc.android_app;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Environment;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,7 +44,8 @@ public class CameraActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         myCam.takePicture(null, null, mPicture);
-                        startActivity(new Intent(CameraActivity.this,Details.class));
+                        Fragment fragment = new Details_frag();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.camera_activity,fragment,fragment.getClass().getSimpleName()).addToBackStack(null).commit();
                     }
                 }
         );
@@ -102,5 +104,11 @@ public class CameraActivity extends AppCompatActivity {
         }
 
         return mediaFile;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 }
