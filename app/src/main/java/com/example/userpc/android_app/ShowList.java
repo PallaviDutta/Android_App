@@ -38,16 +38,16 @@ public class ShowList extends Fragment {
 
         //Here we retrieve internal storage path and store the images.
         File path_of_file = new File(Environment.getExternalStorageDirectory(),File.separator+"Pictures/Inventrom");
-
-        //If images are not saved in the internal storage then here we need to check for null values.
-
-        if(path_of_file.exists()) {
             //Creating a file array
-            File file_A[] = path_of_file.listFiles();
-
-            for (int i = 0; i < file_A.length; i++) {
+            File file_Array[] = path_of_file.listFiles();
+        //If images are not saved in the internal storage then here we need to check for null values.
+        if(file_Array==null) {
+            list.add("File Not Found");
+        }
+        else{
+            for (int i = 0; i < file_Array.length; i++) {
                 //Files are converted into strings.
-                String str = file_A[i].toString();
+                String str = file_Array[i].toString();
                 int a = str.lastIndexOf("/") + 1;
                 int b = str.length();
                 //Extracting substring with image name itself.
@@ -55,11 +55,6 @@ public class ShowList extends Fragment {
                 //Saving image name into list.
                 list.add(str);
             }
-        }
-
-        //Here we need to pass a string message in case there is no item in the list.
-        if (list.isEmpty()) {
-            list.add("File Not Found");
         }
 
         //Setting arraylist to listView through ArrayAdapter.

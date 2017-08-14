@@ -8,11 +8,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.userpc.android_app.Graph">
 
-    <com.example.userpc.android_app.Graph_view
-        android:layout_height="300dp"
-        android:layout_width="match_parent">
+    <!--<com.example.userpc.android_app.Graph_view-->
+        <!--android:layout_height="300dp"-->
+        <!--android:layout_width="match_parent">-->
 
-    </com.example.userpc.android_app.Graph_view>
+    <!--</com.example.userpc.android_app.Graph_view>-->
 
     <Button
         android:layout_marginTop="100dp"

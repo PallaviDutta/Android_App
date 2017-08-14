@@ -24,7 +24,7 @@ public class CameraActivity extends AppCompatActivity {
     private CameraSView surfaceView;
     public static final int MEDIA_TYPE_IMAGE = 1;
     Button captureButton;
-    
+
 
 
     @Override
