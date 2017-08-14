@@ -1,12 +1,12 @@
 package com.example.userpc.android_app;
 
-import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -22,7 +22,9 @@ public class CameraActivity extends AppCompatActivity {
 
     private Camera myCam;
     private CameraSView surfaceView;
-    public static final int IMAGE = 1;
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    Button captureButton;
+    Boolean f=true;
 
 
     @Override
@@ -35,20 +37,28 @@ public class CameraActivity extends AppCompatActivity {
 
         // Create our Preview view and set it as the content of our activity.
         surfaceView = new CameraSView(this, myCam);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        preview.addView(surfaceView);
+        if(f){
+            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            preview.addView(surfaceView);
+            f=false;
+        }
 
-        Button captureButton = (Button) findViewById(R.id.capture);
+
+        captureButton = (Button) findViewById(R.id.capture);
         captureButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         myCam.takePicture(null, null, mPicture);
-                        Fragment fragment = new Details_frag();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.camera_activity,fragment,fragment.getClass().getSimpleName()).addToBackStack(null).commit();
                     }
                 }
         );
+    }
+    public void call()
+    {
+        Fragment fragment = new Details_frag();
+        getSupportFragmentManager().beginTransaction().replace(R.id.camera_activity,fragment,fragment.getClass().getSimpleName()).addToBackStack(null).commit();
+        captureButton.setVisibility(View.GONE);
     }
     protected Camera getCameraInstance(){
         Camera c = null;
@@ -58,13 +68,13 @@ public class CameraActivity extends AppCompatActivity {
         }
         return c;
     }
-
+    //Capturing the image and saving it to internal storage.
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
-            File pictureFile = getOutputMediaFile(IMAGE);
+            File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
             if (pictureFile == null){
 //                Log.d("", "Error creating media file, check storage permissions: " +
 //                        e.getMessage());
@@ -80,9 +90,12 @@ public class CameraActivity extends AppCompatActivity {
             } catch (IOException e) {
                 Log.d("File Error", "Error accessing file: " + e.getMessage());
             }
+
+            call();
         }
     };
 
+    
     private static File getOutputMediaFile(int type){
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "Inventrom");
@@ -96,7 +109,7 @@ public class CameraActivity extends AppCompatActivity {
         // Create a media file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File mediaFile;
-        if (type ==IMAGE) {
+        if (type == MEDIA_TYPE_IMAGE) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator +
                     "Cam_" + timeStamp + ".jpg");
         }else {
@@ -105,6 +118,7 @@ public class CameraActivity extends AppCompatActivity {
 
         return mediaFile;
     }
+
 
     @Override
     protected void onStop() {

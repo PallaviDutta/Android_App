@@ -1,5 +1,6 @@
 <LinearLayout
-    android:layout_height="match_parent"
+    android:layout_margin="50dp"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -21,6 +22,7 @@
 
         <EditText
             android:id="@+id/name"
+            android:inputType="text"
             android:layout_width="150dp"
             android:layout_height="wrap_content" />
 
@@ -42,6 +44,8 @@
 
         <EditText
             android:id="@+id/age"
+            android:inputType="number"
+            android:maxLength="2"
             android:layout_width="150dp"
             android:layout_height="wrap_content" />
 
@@ -84,6 +88,7 @@
         <EditText
             android:id="@+id/gender"
             android:layout_width="150dp"
+            android:inputType="textCapWords"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

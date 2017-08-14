@@ -1,5 +1,8 @@
 package com.example.userpc.android_app;
 
+//Using GraphView library for programmatically create
+//
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,27 +22,27 @@ public class Graph_view extends android.support.v7.widget.AppCompatImageView {
 
     public Graph_view(Context context) {
         super(context);
-        init(context);
+        graph(context);
     }
 
     public Graph_view(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
-        init(attrs);
+        graph(context);
+        graph(attrs);
     }
 
     public Graph_view(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
-        init(attrs);
+        graph(context);
+        graph(attrs);
     }
 
-    private void init(Context context) {
+    private void graph(Context context) {
         this.percentage = 0.8;
         invalidate();
     }
 
-    private void init(AttributeSet attrs) {
+    private void graph(AttributeSet attrs) {
     }
 
     public void setPercentage(double percentage) {

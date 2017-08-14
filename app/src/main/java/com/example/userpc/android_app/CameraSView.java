@@ -19,6 +19,7 @@ public class CameraSView extends SurfaceView implements SurfaceHolder.Callback {
     public CameraSView(Context context, Camera camera) {
         super(context);
         myCam = camera;
+        //get the holder and set this class as the callback,so we can get camera data here
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
@@ -26,6 +27,7 @@ public class CameraSView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void surfaceCreated(SurfaceHolder holder) {
         try {
+            //setting the camera to draw images in this holder when surface has been created
             myCam.setPreviewDisplay(holder);
             myCam.startPreview();
         } catch (IOException e) {
@@ -34,10 +36,12 @@ public class CameraSView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
+        myCam.stopPreview();
+        myCam.release();
     }
 
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
-               if (surfaceHolder.getSurface() == null)
+               if (surfaceHolder.getSurface() == null)//check if the surface is ready to receive the camera
                      return;
 
 
@@ -46,7 +50,7 @@ public class CameraSView extends SurfaceView implements SurfaceHolder.Callback {
             myCam.stopPreview();
         } catch (Exception e){
 
-        }
+        }//now recreate the camera preview
         try {
             myCam.setPreviewDisplay(surfaceHolder);
             myCam.startPreview();
@@ -56,3 +60,5 @@ public class CameraSView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 }
+
+

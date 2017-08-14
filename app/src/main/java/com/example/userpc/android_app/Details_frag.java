@@ -56,6 +56,7 @@ public class Details_frag extends Fragment {
                 }
                 else
                 {
+                    //Creating a new file.Then writing into it and saving it.
                     File r_file = android.os.Environment.getExternalStorageDirectory();
                     File f_dir = new File(r_file.getAbsolutePath()+ "/Inventrom");
                     f_dir.mkdirs();
@@ -77,8 +78,8 @@ public class Details_frag extends Fragment {
                     }catch (Exception e){
                         Log.i("","File not found");
                     }
+                    startActivity(new Intent(getActivity(),Graph.class));
                 }
-                startActivity(new Intent(getActivity(),Graph.class));
             }
         });
 

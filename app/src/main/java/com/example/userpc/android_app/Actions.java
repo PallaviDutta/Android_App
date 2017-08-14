@@ -32,6 +32,7 @@ public class Actions extends Fragment {
         pic_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Passing to the camera activity
                 startActivity(new Intent(getContext(),CameraActivity.class));
             }
         });

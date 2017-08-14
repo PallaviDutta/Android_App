@@ -14,7 +14,7 @@ public class Graph extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
-
+        //Setting reset button in order to go to the home page.
         reset = (Button) findViewById(R.id.reset);
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
