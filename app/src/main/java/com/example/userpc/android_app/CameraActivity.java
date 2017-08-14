@@ -24,7 +24,7 @@ public class CameraActivity extends AppCompatActivity {
     private CameraSView surfaceView;
     public static final int MEDIA_TYPE_IMAGE = 1;
     Button captureButton;
-    Boolean f=true;
+    
 
 
     @Override
@@ -37,11 +37,9 @@ public class CameraActivity extends AppCompatActivity {
 
         // Create our Preview view and set it as the content of our activity.
         surfaceView = new CameraSView(this, myCam);
-        if(f){
             FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
             preview.addView(surfaceView);
-            f=false;
-        }
+
 
 
         captureButton = (Button) findViewById(R.id.capture);
